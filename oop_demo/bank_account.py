@@ -47,7 +47,5 @@ class User:
         return self
     
 if __name__ == "__main__":
-    Tanner = BankAccount(400).deposit(30).deposit(100).deposit(100).withdraw(100).yield_interest().display_account_info()
+    Tanner = BankAccount(400).deposit(30).deposit(100).deposit(100).withdraw(100).yield_interest().deposit(1000).display_account_info()
     Ryan = BankAccount(200).deposit(100).deposit(200).withdraw(100).withdraw(50).withdraw(100).withdraw(10).yield_interest().display_account_info()
-    
-    Tanner.transfer_amount(Ryan, 200).display_account_info()
