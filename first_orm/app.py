@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # the db.Model in parentheses tells SQLAlchemy that this class represents a table in our database
-class Users(db.Model):
+class User(db.Model):
     #__tablename__ = "users" optional
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(45))
@@ -25,9 +25,24 @@ class Users(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now()) # notice the extra import statement above
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
 
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
 @app.route("/")
 def index():
-    return render_template('index.html')
+    results = User.query.all()
+    return render_template('index.html', users=results)
+
+@app.route("/create_user", methods=["POST"])
+def create_user():
+    new_user = User(first_name=request.form['first_name'], last_name=request.form['last_name'], email=request.form['email'], age=request.form['age'])
+    print("Adding new user...")
+    print("new_user")
+    db.session.add(new_user)
+    db.session.commit()
+
+    return redirect("/")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
