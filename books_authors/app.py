@@ -44,6 +44,32 @@ def main():
     book_results = Book.query.all()
     return render_template("index.html", book_results=book_results)
 
+
+@app.route("/authors")
+def authors():
+    author_list=Author.query.all()
+    return render_template("authors.html", authors=author_list)
+
+
+
+@app.route("/authors/<id>")
+def author(id):
+    author = Author.query.get(id)
+    potential_books = Book.query.all()
+    return render_template("author.html", author=author, books=potential_books)
+
+
+@app.route("/author", methods=["POST"])
+def add_author():
+    new_author = Author(
+        first_name=request.form['first_name'],
+        last_name=request.form['last_name'],
+        notes=request.form['notes']
+    )
+    db.session.add(new_author)
+    db.session.commit()
+    return redirect("/authors")
+
 @app.route("/new_book", methods=["POST"])
 def new_book():
     new_book = Book(title=request.form['title'], desc=request.form['desc'])

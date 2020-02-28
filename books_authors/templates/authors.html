@@ -28,26 +28,28 @@
               </div>
               <input type="submit">
           </form>
+      </div>
       <div class="col">
-        <h3>Authors</h3>
-        <table>
-          <thead>
-              <tr>
-                  <th>Id</th>
-                  <th>Title</th>
-                  <th>Action</th>
-              </tr>
-          </thead>
-          <tbody>
-              {% for author in authors %}
-              <tr>
-                  <td>{{author.id}}</td>
-                  <td>{{author.first_name}} {{author.last_name}}</td>
-                  <td><a href="/authors/{{author.id}}">View</a></td>
-              </tr>
-              {% endfor %}
-          </tbody>
-        </table>
+          <h3>Authors</h3>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Title</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for author in authors %}
+                  <tr>
+                      <td>{{author.id}}</td>
+                      <td>{{author.first_name}} {{author.last_name}}</td>
+                      <td><a href="/authors/{{author.id}}">View</a></td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
