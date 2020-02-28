@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+<title>Books &  Authors</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Add a Book</h1>
+    <div class="row mt-4">
+      <div class="col d-inline-flex">
+        <form action="/new_book" method="post">
+        <label for="book_title">Title: </label><input type="text" name="title" class="d-block">
+        <label for="description">Description: </label><input type="text" name="desc" class="d-block" cols="60" rows="10" overflow:auto>
+        <input type="submit" value="Add">
+        </form>
+      </div>
+      <div class="col">
+        <table class="table table-light">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for book in book_results %}
+            <tr>
+              <td>{{book.id}}</td>
+              <td>{{book.title}}</td>
+              <td><a href="/book/{{book.id}}">Details</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
