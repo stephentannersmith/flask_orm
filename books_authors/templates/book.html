@@ -21,7 +21,7 @@
         <span>Authors</span>
             <ul>
                 {% for author in authors %}
-                <li>{{author.first_name}} {{author.last_name}}</li>
+                <li>{{author.full_name()}}</li>
                 {% endfor %}
             </ul>
             <form action="/authors_books" method="POST">

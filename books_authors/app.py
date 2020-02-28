@@ -44,13 +44,10 @@ def main():
     book_results = Book.query.all()
     return render_template("index.html", book_results=book_results)
 
-
 @app.route("/authors")
 def authors():
     author_list=Author.query.all()
     return render_template("authors.html", authors=author_list)
-
-
 
 @app.route("/authors/<id>")
 def author(id):
